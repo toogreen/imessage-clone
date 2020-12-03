@@ -24,10 +24,10 @@ function Chat() {
         </div>
 
         <div className="chat__messages">
-          <h2>I am a Message</h2>
-          <h2>I am a Message</h2>
-          <h2>I am a Message</h2>
-          <h2>I am a Message</h2>
+          <h2>&nbsp;I am a Message</h2>
+          <h2>&nbsp;I am a Message</h2>
+          <h2>&nbsp;I am a Message</h2>
+          <h2>&nbsp;I am a Message</h2>
         </div>
 
         <div className="chat__input">

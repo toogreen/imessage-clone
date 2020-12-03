@@ -6,32 +6,34 @@ import Imessage from "./Imessage";
 import Login from "./Login";
 import { auth } from "./firebase";
 
+//auth.signOut();
+
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    auth.onAuthStateChanged(authUser => {
+    auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         // user is logged in 
-        dispatch(login({
-          uid: authUser.uid,
-          photo: authUser.photo,
-          email: authUser.email,
-          displayName: authUser.displayName,
-        }))
-
+        dispatch(
+          login({
+            uid: authUser.uid,
+            photo: authUser.photoURL,
+            email: authUser.email,
+            displayName: authUser.displayName,
+          })
+        );
       } else {
         // user is logged out
         dispatch(logout());
       }
-    })
-  }, [])
+    });
+  }, []);
 
   return (
-    <div className="app">
-      {user ? <Login /> : <Imessage /> }
-    </div>
+    //<Imessage />
+    <div className="app">{user ? <Imessage /> : <Login /> }</div>
   );
 }
 
