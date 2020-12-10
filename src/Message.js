@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import { Avatar } from "@material-ui/core";
-import { PhotoAlbumRounded } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import { selectUser } from "./features/userSlice"; 
 import "./Message.css";
