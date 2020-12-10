@@ -32,7 +32,7 @@ function Chat() {
         )
       );
     }
-  }, [chatId])
+  }, [chatId]);
 
 
   const sendMessage = (e) => {
@@ -63,7 +63,7 @@ function Chat() {
           {messages.map(({ id, data }) => (
             <Message 
               key={id}
-              content={data}
+              contents={data}
             />
           ))}
         </div>
