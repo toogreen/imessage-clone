@@ -8,6 +8,7 @@ import db from "./firebase";
 import { selectUser } from "./features/userSlice";
 import { selectChatId, selectChatName } from "./features/chatSlice";
 import firebase from 'firebase';
+import FlipMove from "react-flip-move";
 
 function Chat() {
 
@@ -22,7 +23,7 @@ function Chat() {
       db.collection("chats")
         .doc(chatId)
         .collection("messages")
-        .orderBy('timestamp', 'desc')
+        .orderBy('timestamp', 'asc')
         .onSnapshot((snapshot) => 
           setMessages(
             snapshot.docs.map((doc) => ({
@@ -60,12 +61,15 @@ function Chat() {
         </div>
 
         <div className="chat__messages">
-          {messages.map(({ id, data }) => (
-            <Message 
-              key={id}
-              contents={data}
-            />
-          ))}
+          <FlipMove>
+            {messages.map(({ id, data }) => (
+              <Message 
+                key={id}
+                contents={data}
+              />
+            ))}
+          </FlipMove>
+
         </div>
 
         <div className="chat__input">
