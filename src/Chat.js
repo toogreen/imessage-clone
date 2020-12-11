@@ -65,6 +65,7 @@ function Chat() {
             {messages.map(({ id, data }) => (
               <Message 
                 key={id}
+                msgId={id}
                 contents={data}
               />
             ))}
