@@ -6,12 +6,14 @@ import db from "./firebase";
 import "./SidebarChat.css";
 import * as timeago from "timeago.js";
 import { selectUser } from "./features/userSlice";
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import MenuPopupState from "./components/MenuPopupState";
 
-function SidebarChat({ id, chatName }) {
+function SidebarChat({ id, chatName, chatUserId, chatUserEmail }) {
     const dispatch = useDispatch();
     const [chatInfo, setChatInfo] = useState([]);
     const user = useSelector(selectUser);
+
+    console.log(user.id);
 
     useEffect(() => {
         db.collection("chats")
@@ -47,10 +49,16 @@ function SidebarChat({ id, chatName }) {
                 <div className="sidebarChat__info">
                     <h3>{chatName}</h3>
                     <p>{chatInfo[0]?.message}</p>
+                    <p>{chatInfo.userEmail}</p>
                     <small>{timeago.format(new Date(chatInfo[0]?.timestamp?.toDate()).toLocaleString())}</small>
                 </div>
             </div>
-            {user.email === "toogreen@gmail.com" && <p onClick={delChat}><DeleteForeverIcon/></p>}
+            {user.email === chatUserEmail  && 
+            <MenuPopupState 
+                    functiontopass={delChat}
+                    labeltopass={"Delete this Chat Room"}
+                />
+            }
         </div>
         
     )

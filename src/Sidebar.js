@@ -29,6 +29,8 @@ function Sidebar() {
         if (chatName) {
           db.collection("chats").add({
             chatName: chatName,
+            userId: user.uid,
+            userEmail: user.email
           });
         }
       };
@@ -51,11 +53,13 @@ function Sidebar() {
           </div>
 
           <div className="sidebar__chats">
-              {chats.map(({ id, data: { chatName } }) => (
+              {chats.map(({ id, data: { chatName, userId, userEmail } }) => (
                 <SidebarChat 
                   key={id} 
                   id={id}
                   chatName={chatName}
+                  chatUserID={userId}
+                  chatUserEmail={userEmail}
                 />
               ))}
           </div>

@@ -25,9 +25,7 @@ const Message = forwardRef(
         .doc(msgId)
         .delete();
     }
-
-    console.log(msgId);
-
+    
     return (
         <div ref={ref} className={`message ${user.email === email && "message__sender"}`}>
             <Avatar className='message__photo' src={photo} />
