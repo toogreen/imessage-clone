@@ -21,10 +21,16 @@
 .sidebarChat__info > small {
     position: absolute;
     top: 5px;
-    right: 0;
+    right: 10px;
 }
 
 .sidebarChat__row{
     display: flex;
+    position: relative;
     flex: 0;
+}
+
+.delete__chat{
+    position: absolute;
+    right: 0px;
 }

@@ -52,13 +52,15 @@ function SidebarChat({ id, chatName, chatUserId, chatUserEmail }) {
                     <p>{chatInfo.userEmail}</p>
                     <small>{timeago.format(new Date(chatInfo[0]?.timestamp?.toDate()).toLocaleString())}</small>
                 </div>
+                <div className="delete__chat">
+                    {user.email === chatUserEmail  && 
+                        <MenuPopupState 
+                            functiontopass={delChat}
+                            labeltopass={"Delete this Chat Room"}
+                        />  
+                    }
+                </div>
             </div>
-            {user.email === chatUserEmail  && 
-            <MenuPopupState 
-                    functiontopass={delChat}
-                    labeltopass={"Delete this Chat Room"}
-                />
-            }
         </div>
         
     )
