@@ -18,12 +18,23 @@ function Chat() {
   const chatId = useSelector(selectChatId);
   const [messages, setMessages] = useState([]);
 
+// Later might implement a scroll to bottom function to display messages in ascending order but for now I just fixed the issue by making newer messages appear at the top (desc)
+/*   function scrollToBottom() {
+    var div = getElementById(chat__messages);
+    div.scrollTop = div.scrollHeight - div.clientHeight;
+  }
+
+  useEffect(() => {
+    scrollToBottom();
+  }, []); */
+
+
   useEffect(() => {
     if (chatId) {
       db.collection("chats")
         .doc(chatId)
         .collection("messages")
-        .orderBy('timestamp', 'asc')
+        .orderBy('timestamp', 'desc') // Don't forget to set this to 'asc' if you revert messages' order
         .onSnapshot((snapshot) => 
           setMessages(
             snapshot.docs.map((doc) => ({
@@ -32,9 +43,9 @@ function Chat() {
           }))
         )
       );
+      //scrollToBottom();
     }
   }, [chatId]);
-
 
   const sendMessage = (e) => {
     e.preventDefault();
